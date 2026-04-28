@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="auth-page">
+    <div class="auth-image">
+        <h1>StockVision AI</h1>
+        <p>Smart portfolio optimization with risk and return analysis.</p>
+    </div>
+
+    <div class="auth-card">
+        <h1>Login</h1>
+        <p>Welcome back to your investment dashboard.</p>
+
+        <form action="/login" method="post">
+            <label>Username</label>
+            <input type="text" name="username" required>
+
+            <label>Password</label>
+            <input type="password" name="password" required>
+
+            <button type="submit">Login</button>
+        </form>
+
+        <a href="/signup">Create New Account</a>
+    </div>
+</div>
+</body>
+</html>

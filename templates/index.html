@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Portfolio Optimizer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="main-bg">
+    <div class="navbar">
+        <div class="logo">StockVision AI</div>
+        <div class="nav-links">
+            <a href="/history">History</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+
+    <div class="hero-section">
+        <div class="hero-left">
+            <span class="tag">AI + Finance + Risk Analysis</span>
+            <h1>Build a Smarter Investment Portfolio</h1>
+            <p>Analyze stock returns, risk, optimized allocation, charts, history and downloadable reports in one dashboard.</p>
+
+            <div class="feature-row">
+                <div class="feature-box">📈 Stock Analysis</div>
+                <div class="feature-box">💰 Portfolio Allocation</div>
+                <div class="feature-box">📊 Risk Report</div>
+            </div>
+        </div>
+
+        <div class="hero-right">
+            <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=900&q=80" alt="Stock Market">
+        </div>
+    </div>
+
+    <div class="form-card">
+        <h2>Optimize Your Portfolio</h2>
+        <form action="/optimize" method="post">
+            <label>Stock Symbols</label>
+            <input type="text" name="stocks" placeholder="Example: AAPL,MSFT,GOOGL" required>
+
+            <label>Investment Amount</label>
+            <input type="number" name="amount" placeholder="Example: 100000" required>
+
+            <label>Risk Level</label>
+            <select name="risk" required>
+                <option value="low">Low Risk</option>
+                <option value="medium">Medium Risk</option>
+                <option value="high">High Risk</option>
+            </select>
+
+            <button type="submit">Optimize Portfolio</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

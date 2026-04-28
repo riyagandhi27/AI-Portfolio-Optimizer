@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Portfolio Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <h1 class="page-title">Portfolio Result</h1>
+
+    <div class="score-card">
+        <h2>Portfolio Score</h2>
+        <h1>{{ score }} / 100</h1>
+        <p>{{ insight }}</p>
+        <p>{{ risk_insight }}</p>
+        <p>{{ diversification_insight }}</p>
+    </div>
+
+    <div class="summary-grid">
+        <div class="summary-box">
+            <h3>Expected Return</h3>
+            <p>{{ metrics.portfolio_return }}%</p>
+        </div>
+
+        <div class="summary-box">
+            <h3>Portfolio Risk</h3>
+            <p>{{ metrics.portfolio_risk }}%</p>
+        </div>
+
+        <div class="summary-box">
+            <h3>Sharpe Ratio</h3>
+            <p>{{ metrics.sharpe_ratio }}</p>
+        </div>
+    </div>
+
+    <div class="chart-row">
+        <div class="chart-box">
+            <h2>Allocation Pie Chart</h2>
+            <img src="{{ url_for('static', filename='allocation_chart.png') }}?v={{ time }}">
+        </div>
+
+        <div class="chart-box">
+            <h2>Efficient Frontier</h2>
+            <img src="{{ url_for('static', filename='efficient_frontier.png') }}?v={{ time }}">
+        </div>
+    </div>
+
+    <div class="table-card">
+        <h2>AI Stock Recommendation Table</h2>
+
+        <table>
+            <tr>
+                <th>Stock</th>
+                <th>Return %</th>
+                <th>Risk %</th>
+                <th>Weight %</th>
+                <th>Optimized Amount</th>
+                <th>AI Suggestion</th>
+            </tr>
+
+            {% for item in result %}
+            <tr>
+                <td>
+                    <div class="stock-name">
+                        <img src="{{ item.logo }}" class="stock-logo">
+                        <b>{{ item.stock }}</b>
+                    </div>
+                </td>
+                <td>{{ item.expected_return }}</td>
+                <td>{{ item.risk }}</td>
+                <td>{{ item.weight }}</td>
+                <td>{{ item.optimized_allocation }}</td>
+                <td>
+                    {% if item.recommendation == "BUY" %}
+                    <span class="badge buy">BUY</span>
+                    {% elif item.recommendation == "HOLD" %}
+                    <span class="badge hold">HOLD</span>
+                    {% else %}
+                    <span class="badge sell">SELL</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <div class="trend-section">
+        <h2>Live Stock Trend Charts</h2>
+
+        <div class="trend-grid">
+            {% for item in result %}
+            <div class="trend-card">
+                <div class="trend-title">
+                    <img src="{{ item.logo }}" class="stock-logo">
+                    <h3>{{ item.stock }}</h3>
+                </div>
+                <img src="{{ url_for('static', filename=item.trend_chart) }}?v={{ time }}" class="trend-img">
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="sector-section">
+        <h2>Sector Analysis</h2>
+
+        <div class="sector-grid">
+            {% for sector in sector_data %}
+            <div class="sector-card">
+                <h3>{{ sector.name }}</h3>
+                <p>{{ sector.percentage }}%</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="prediction-section">
+        <h2>5-Day Future Price Prediction</h2>
+
+        <div class="prediction-grid">
+            {% for item in result %}
+            <div class="prediction-card">
+                <div class="trend-title">
+                    <img src="{{ item.logo }}" class="stock-logo">
+                    <h3>{{ item.stock }}</h3>
+                </div>
+
+                <table>
+                    <tr>
+                        <th>Day</th>
+                        <th>Predicted Price</th>
+                    </tr>
+
+                    {% for pred in item.predictions %}
+                    <tr>
+                        <td>Day {{ loop.index }}</td>
+                        <td>{{ pred }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="action-row">
+        <a href="/download_report">Download PDF Report</a>
+        <a href="/">Back to Home</a>
+        <a href="/history">View History</a>
+    </div>
+
+</div>
+
+</body>
+</html>

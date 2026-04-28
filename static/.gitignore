@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+portfolio.db
+static/*.png
+static/*.pdf
+.env

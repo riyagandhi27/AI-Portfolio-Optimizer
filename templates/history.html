@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Portfolio History</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <div class="history-card">
+        <h1>Saved Portfolio History</h1>
+
+        <div class="table-wrapper">
+            <table class="history-table">
+                <tr>
+                    <th>Stocks</th>
+                    <th>Amount</th>
+                    <th>Risk Level</th>
+                    <th>Return (%)</th>
+                    <th>Risk (%)</th>
+                    <th>Sharpe Ratio</th>
+                </tr>
+
+                {% for row in data %}
+                <tr>
+                    <td class="stock-cell">{{ row[0] }}</td>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[2] }}</td>
+                    <td>{{ row[3] }}</td>
+                    <td>{{ row[4] }}</td>
+                    <td>{{ row[5] }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <a href="/">Back to Home</a>
+    </div>
+</div>
+
+</body>
+</html>
