@@ -1,6 +1,35 @@
+# Python cache
 __pycache__/
 *.pyc
-portfolio.db
-static/*.png
-static/*.pdf
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+env/
 .env
+
+# Database
+portfolio.db
+*.db
+
+# Generated files (charts, reports)
+static/*.png
+static/*.jpg
+static/*.jpeg
+static/*.pdf
+*.pdf
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
